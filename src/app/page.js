@@ -1,13 +1,13 @@
-import { Card } from "@/components/Card";
-import { GenereTitle } from "@/components/GenereTitle";
+import { ALlMoviesList } from "@/components/CategoryList/AllMoviesList";
 import { Hero } from "@/components/Hero";
+import { getMovieService } from "@/service/movie.service";
 
-const Home = () => {
+const Home = async () => {
+  const movies = await getMovieService();
   return (
     <div>
       <Hero />
-      <GenereTitle />
-      <Card />
+      <ALlMoviesList data={movies.payload} />
     </div>
   )
 }
