@@ -18,7 +18,7 @@ export const Navbar = () => {
         },
     ]
     return (
-        <div className="flex justify-between fixed w-full py-4 px-32 z-10">
+        <div className="flex justify-between absolute w-full top-0 py-4 px-32 z-10">
             <img src="/legend-cinema-logo.png" alt="logo" />
             <div>
                 <ul className="flex gap-8">
