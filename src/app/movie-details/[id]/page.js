@@ -4,6 +4,18 @@ const pageDetail = async ({ params }) => {
     const { id } = params;
     const movieData = await getMovieByid(id);
     const data = movieData.payload;
+    const movieDate = new Date(data?.posted_at);
+    const options = {
+        timeZone: 'Asia/Phnom_Penh',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+    };
+    const convertedDate = movieDate.toLocaleString('en-US', options);
     return (
         <div className="text-white">
             <img className="w-full h-screen relative object-cover" src={data.image == "" || data.image == undefined || data.image == null ? `/default.jpg` : data.image} alt="" />
@@ -25,7 +37,7 @@ const pageDetail = async ({ params }) => {
                     </div>
                     <div className="space-y-2 w-1/3">
                         <h2 className="font-semibold text-2xl">{data?.director}</h2>
-                        <p className="text-sm">Jul 18, 2008, 7:00:00 AM</p>
+                        <p className="text-sm">{convertedDate}</p>
                         <p className="text-sm line-clamp-6">
                             {data?.description}
                         </p>
