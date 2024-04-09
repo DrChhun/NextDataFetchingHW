@@ -19,7 +19,7 @@ export const Navbar = () => {
         },
     ]
     return (
-        <div className="flex justify-between absolute w-full top-0 py-4 px-32 z-10">
+        <div className="flex justify-between absolute w-full top-0 py-4 px-32 z-10 ">
             <Link href={`/`}>
                 <img src="/legend-cinema-logo.png" alt="logo" />
             </Link>
