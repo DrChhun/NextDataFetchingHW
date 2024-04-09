@@ -1,13 +1,9 @@
 export const revalidate = 360;
 
-import { AllActionList } from "@/components/CategoryList/AllActionList";
-import { ALlMoviesList } from "@/components/CategoryList/AllMoviesList";
 import { Hero } from "@/components/Hero";
 import { getCateMovieService, getMovieService } from "@/service/movie.service";
 import { Suspense } from "react";
-import { AllCrimeList } from "@/components/CategoryList/AllCrimeList";
-import { AllDramaList } from "@/components/CategoryList/AllDramaList";
-import { AllAnimeList } from "@/components/CategoryList/AllAnimeList";
+import { CategotyList } from "@/components/CategoryList/CategoryList";
 
 const Home = async () => {
   const movies = await getMovieService();
@@ -21,19 +17,19 @@ const Home = async () => {
         <Hero />
       </Suspense>
       <Suspense fallback={<h1>Loading</h1>}>
-        <ALlMoviesList data={movies?.payload} />
+        <CategotyList title={"All Movies"} data={movies?.payload} />
       </Suspense>
       <Suspense fallback={<h1>Loading</h1>}>
-        <AllActionList data={action?.payload} />
+        <CategotyList title={"Drama Movies"} data={drama?.payload} />
       </Suspense>
       <Suspense fallback={<h1>Loading</h1>}>
-        <AllCrimeList data={hollywood?.payload} />
+        <CategotyList title={"Hollywood Movies"} data={hollywood?.payload} />
       </Suspense>
       <Suspense fallback={<h1>Loading</h1>}>
-        <AllDramaList data={drama?.payload} />
+        <CategotyList title={"Action Movies"} data={action?.payload} />
       </Suspense>
       <Suspense fallback={<h1>Loading</h1>}>
-        <AllAnimeList data={anime?.payload} />
+        <CategotyList title={"Anime Movies"} data={anime?.payload} />
       </Suspense>
     </>
   )

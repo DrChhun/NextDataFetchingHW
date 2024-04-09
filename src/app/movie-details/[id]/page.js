@@ -6,14 +6,14 @@ const pageDetail = async ({ params }) => {
     const data = movieData.payload;
     return (
         <div className="text-white">
-            <img className="w-full h-screen relative" src={data.image == "" ? '/firstimage.jpg' : data.image} alt="" />
+            <img className="w-full h-screen relative object-cover" src={data.image == "" || data.image == undefined || data.image == null ? `/default.jpg` : data.image} alt="" />
             <div className="absolute bottom-0 backdrop-blur-md opacity-50 h-1/4 w-full"></div>
             <div className="h-full w-full bg-gradient-to-t from-black to-transparent absolute top-0">
                 <div className="absolute p-32 bottom-0 flex gap-4 justify-between w-full">
                     <div className="space-y-4 w-1/3">
                         <h2 className="text-white font-semibold text-5xl">{data?.movie_title}</h2>
                         <div className="text-sm flex space-x-12">
-                            <p>{data?.runtime} minutes</p>
+                            <p>{data?.runtime} minutes </p>
                             <p>{data?.genre}</p>
                             <div>{Math.round(data.rating) == 1 ? "⭐️"
                                 : data.rating == 2 ? "⭐️⭐️"

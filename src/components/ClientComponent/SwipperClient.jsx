@@ -12,7 +12,7 @@ export const SwipperClient = ({ data }) => {
                 spaceBetween={32}
                 slidesPerView={3.5}
             >
-                {data?.data?.map(x => (
+                {data?.map(x => (
                     <SwiperSlide key={x.movie_id} className='text-white'>
                         <Link href={`/movie-details/${x.movie_id}`}>
                             <Card title={x.movie_title} image={x?.image ?? `/firstimage.jpg`} description={x.description} />
@@ -20,6 +20,6 @@ export const SwipperClient = ({ data }) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-        </div>
+        </div >
     )
 }

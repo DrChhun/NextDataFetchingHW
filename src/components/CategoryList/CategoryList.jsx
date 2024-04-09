@@ -1,11 +1,11 @@
 import { GenereTitle } from "../GenereTitle"
 import { SwipperClient } from "../ClientComponent/SwipperClient"
 
-export const AllCrimeList = async (props) => {
+export const CategotyList = async ({ title, data }) => {
     return (
         <div className="container space-y-8 py-16">
-            <GenereTitle title={"Hollywood Movies"} />
-            <SwipperClient data={props} />
+            <GenereTitle title={title} />
+            <SwipperClient data={data} />
         </div>
     )
 }
