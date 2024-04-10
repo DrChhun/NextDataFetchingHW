@@ -4,33 +4,42 @@ import { Hero } from "@/components/Hero";
 import { getCateMovieService, getMovieService } from "@/service/movie.service";
 import { Suspense } from "react";
 import { CategotyList } from "@/components/CategoryList/CategoryList";
+import { AllCategotyList } from "@/components/CategoryList/AllCategoryList";
 
 const Home = async () => {
   const movies = await getMovieService();
-  const action = await getCateMovieService("action");
-  const anime = await getCateMovieService("anime");
-  const drama = await getCateMovieService("drama");
-  const hollywood = await getCateMovieService("hollywood");
+  const allCate = new Set();
+  const arrCate = [];
+  movies.payload.filter(x => allCate.add(x.genre))
+  allCate.forEach(x => arrCate.push(x));
+
   return (
     <>
       <Suspense fallback={<h1>Loading</h1>}>
         <Hero />
       </Suspense>
       <Suspense fallback={<h1>Loading</h1>}>
-        <CategotyList title={"All Movies"} data={movies?.payload} />
+        <AllCategotyList title={"All Movies"} data={movies} />
       </Suspense>
-      <Suspense fallback={<h1>Loading</h1>}>
-        <CategotyList title={"Drama Movies"} data={drama?.payload} />
-      </Suspense>
-      <Suspense fallback={<h1>Loading</h1>}>
-        <CategotyList title={"Hollywood Movies"} data={hollywood?.payload} />
-      </Suspense>
-      <Suspense fallback={<h1>Loading</h1>}>
-        <CategotyList title={"Action Movies"} data={action?.payload} />
-      </Suspense>
-      <Suspense fallback={<h1>Loading</h1>}>
-        <CategotyList title={"Anime Movies"} data={anime?.payload} />
-      </Suspense>
+      {/* {arrCate.map(async x => (
+        <Suspense fallback={<h1>Loading</h1>}>
+          <CategotyList title={`${x} Movies`} data={await getCateMovieService(x)} />
+        </Suspense>
+      )
+      )} */}
+
+      {/* {movies.payload.map(x => (
+        <Suspense fallback={<h1>Loading</h1>}>
+          <CategotyList title={`${x.genre} Movies`} data={movies} />
+        </Suspense>
+      ))} */}
+      {/* <p>{allCate}</p> */}
+      {/* <p className="text-white mb-5">{arrCate.map((x, index) => <span>{index + 1}</span>)}</p> */}
+      {arrCate.map((genre, index) => (
+        <Suspense key={index} fallback={<h1>Loading</h1>}>
+          <CategotyList title={`${genre} Movies`} data={movies.payload.filter(x => x.genre == genre)} />
+        </Suspense>
+      ))}
     </>
   )
 }
