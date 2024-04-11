@@ -16,6 +16,7 @@ const pageDetail = async ({ params }) => {
         hour12: true,
     };
     const convertedDate = movieDate.toLocaleString('en-US', options);
+    const mathStar = Math.round(data.rating)
     return (
         <div className="text-white">
             <img className="w-full h-screen relative object-cover" src={data.image == "" || data.image == undefined || data.image == null ? `/default.jpg` : data.image} alt="" />
@@ -27,11 +28,11 @@ const pageDetail = async ({ params }) => {
                         <div className="text-sm flex space-x-12">
                             <p>{data?.runtime} minutes </p>
                             <p>{data?.genre}</p>
-                            <div>{Math.round(data.rating) == 1 ? "⭐️"
-                                : data.rating == 2 ? "⭐️⭐️"
-                                    : data.rating == 3 ? "⭐️⭐️⭐️"
-                                        : data.rating == 4 ? "⭐️⭐️⭐️⭐️"
-                                            : data.rating == 5 ? "⭐️⭐️⭐️⭐️⭐️"
+                            <div>{mathStar == 1 ? "⭐️"
+                                : mathStar == 2 ? "⭐️⭐️"
+                                    : mathStar == 3 ? "⭐️⭐️⭐️"
+                                        : mathStar == 4 ? "⭐️⭐️⭐️⭐️"
+                                            : mathStar == 5 ? "⭐️⭐️⭐️⭐️⭐️"
                                                 : "⭐️⭐️⭐️⭐️⭐️⭐️"}</div>
                         </div>
                     </div>
